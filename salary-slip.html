@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="./salary-slip.css" type="text/css">
+        <script type="text/javascript" src="./salary-slip.js"></script>
+        <title>Employee Salary Calculator</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="salary-slip-model">
+                <h1 class="heading">Employee Salary Calculator</h1>
+                <form onsubmit="calculateNetSalary()">
+                    <div class="form-group mb-4">
+                        <label for="empName" class="form-label">Employee Name</label>
+                        <input type="text" id="empName" class="form-control" placeholder="Enter employee name"
+                            aria-describedby="nameError" required />
+                        <div class="error" id="nameError" class="form-text" hidden="hidden"></div>
+                    </div>
+
+                    <div class="annualSalDiv form-group mb-4">
+                        <label for="empAnnualSal" class="form-label">Employee Annual Salary</label>
+                        <input type="number" min="0" id="empAnnualSal" class="form-control"
+                            placeholder="Enter annual salary in $" data-val="" aria-describedby="salError" required />
+                        <div class="error" id="salError" class="form-text" hidden="hidden"></div>
+                    </div>
+
+                    <div class="additions">
+                        <h2 class="heading">Additions in Dollars</h2>
+                        <div class="form-group mb-4">
+                            <label for="empBonus" class="form-label">Bonus:</label>
+                            <input type="number" min="0" id="empBonus" class="form-control"
+                                placeholder="Enter bonus amount in $" data-val="" aria-describedby="bonusError"
+                                required />
+                            <div class="error" id="bonusError" class="form-text" hidden="hidden"></div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="empAllowance" class="form-label">Allowance:</label>
+                            <input type="number" min="0" id="empAllowance" class="form-control"
+                                placeholder="Enter allowance amount in $" dataVal="" aria-describedby="allowanceError"
+                                required />
+                            <div class="error" id="allowanceError" class="form-text" hidden="hidden"></div>
+                        </div>
+                    </div>
+
+
+                    <div id="deductions" class="deductions">
+                        <h2 class="heading">Deductions in Percentage</h2>
+                        <div class="form-group mb-4">
+                            <label for="incomeTax" class="form-label">Income Tax:</label>
+                            <input type="number" id="incomeTax" class="form-control" min="15" max="33" step="0.01"
+                                data-val="" placeholder="Enter Income Tax percentage" aria-describedby="itError"
+                                required />
+                            <div class="error" id="itError" class="form-text" hidden="hidden"></div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="ei" class="form-label">Employee Insurance:</label>
+                            <input type="number" id="ei" class="form-control" min="1" max="5.95" step="0.01" data-val=""
+                                placeholder="Enter EI percentage" aria-describedby="eiError" data-val="" required />
+                            <div class="error" id="eiError" class="form-text" hidden="hidden"></div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="cpp" class="form-label">Canadian Pension Plan:</label>
+                            <input type="number" min="1" max="2" step="0.01" data-val="" id="cpp" class="form-control"
+                                placeholder="Enter CPP percentage" aria-describedby="cppError" required />
+                            <div class="error" id="cppError" class="form-text" hidden="hidden"></div>
+                        </div>
+                    </div>
+
+                    <div class="gender-selection">
+
+                        <p>Please specify the gender of employee:</p>
+                        <div class="form-check form-check-inline">
+                            <input class="custom-check-input form-check-input" type="radio" id="male" name="gender"
+                                value="Male" required />
+                            <label class="form-check-label" for="male">Male</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="custom-check-input form-check-input" type="radio" id="female" name="gender"
+                                value="Female" required />
+                            <label class="form-check-label" for="female">Female</label>
+                        </div>
+                    </div>
+
+                    <div class="dependent-selection">
+
+                        <p>Please specify the number of dependents:</p>
+                        <div class="form-check form-check-inline">
+                            <input class="custom-check-input form-check-input" type="radio" id="twoDep"
+                                name="dependents" value="2" required />
+                            <label class="form-check-label" for="twoDep">2</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="custom-check-input form-check-input" type="radio" id="threeDep"
+                                name="dependents" value="3" required />
+                            <label class="form-check-label" for="threeDep">3</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="custom-check-input form-check-input" type="radio" id="fourDep"
+                                name="dependents" value="4" required />
+                            <label class="form-check-label" for="fourDep">4</label>
+                        </div>
+                    </div>
+
+
+                    <div class="button-div">
+                        <button type="submit" id="submitBtn" onclick="calculateNetSalary()" class="btn" value="">Get Net
+                            salary</button>
+                        <div class="error" id="formError" hidden="hidden"></div>
+                    </div>
+
+
+                </form>
+
+                <div id="result" class="result" hidden="hidden">
+                    <h2 id="resultHeader"></h2>
+                    <p id="resultName"></p>
+                    <p id="sal"></p>
+                    <p id="netSal"></p>
+                    <p id="resultGender"></p>
+                    <p id="resultDep"></p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+    </body>
+
+</html>

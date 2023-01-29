@@ -1,0 +1,105 @@
+html {
+    box-sizing: border-box;
+}
+
+
+body {
+    background-color: brown;
+
+}
+
+.heading {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+.salary-slip-model {
+    color: brown;
+    border: 3px solid brown;
+    border-radius: 10px;
+    background-color: burlywood;
+    font-size: 18px;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 700px;
+}
+
+
+/* Removing default arrows in number input */
+/* For chrome, Safari, Edge, Opera  */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* For firefox */
+input[type=number] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.additions,
+.deductions,
+.result {
+    background-color: brown;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.deductions {
+    margin-top: 20px;
+}
+
+.error {
+    margin-top: 10px;
+    color: red;
+    background-color: white;
+    border-radius: 0.15cm;
+    text-align: center;
+    font-size: 16px;
+}
+
+.gender-selection,
+.dependent-selection {
+    margin-top: 30px;
+}
+
+.gender-selection p,
+.dependent-selection p {
+    margin-bottom: 5px;
+}
+
+.custom-check-input:checked {
+    background-color: brown;
+    border-color: brown;
+}
+
+.custom-check-input:hover,
+.form-check-label:hover {
+    cursor: pointer;
+}
+
+.button-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.btn {
+    color: white;
+    background-color: brown;
+    margin-top: 20px;
+    font-size: 20px;
+    width: 200px;
+    margin-bottom: 30px;
+}
+
+.resultHeader{
+    margin-bottom: 15px;
+}
